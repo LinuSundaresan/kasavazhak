@@ -13,6 +13,7 @@
         </div>
         <div class="row flash_sell_slider">
             @foreach ($flashSaleHomeItems as $flashSaleHomeItem)
+            @if($flashSaleHomeItem->product)
             <div class="col-xl-3 col-sm-6 col-lg-4">
 
                     <div class="wsus__product_item">
@@ -76,6 +77,7 @@
 
 
             </div>
+            @endif
             @endforeach
 
         </div>
@@ -86,6 +88,7 @@
     PRODUCT MODAL VIEW START
 ===========================-->
 @foreach ($flashSaleHomeItems as $flashSaleHomeItem)
+@if($flashSaleHomeItem->product)
 <section class="product_popup_modal">
     <div class="modal fade" id="exampleModal-{{ $flashSaleHomeItem->product->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -203,6 +206,7 @@
         </div>
     </div>
 </section>
+@endif
 @endforeach
 <!--==========================
     PRODUCT MODAL VIEW END

@@ -33,25 +33,26 @@
                         @foreach ($popularCategories as $key => $popularCategory)
                             @php
                                 $lastKey = [];
-                                foreach ($popularCategory as $key=>$category){
-                                    if($category == null){
+                                foreach ($popularCategory as $key => $category) {
+                                    if ($category == null) {
                                         break;
                                     }
-                                    $lastKey = [$key=>$category];
+                                    $lastKey = [$key => $category];
                                 }
-                                if(array_keys($lastKey)[0]=='category'){
+                                if (array_keys($lastKey)[0] == 'category') {
                                     $category = \App\Models\Category::find($lastKey['category']);
                                     $products[] = \App\Models\Product::where('category_id', $category->id)->take(12)->get();
-                                } elseif(array_keys($lastKey)[0]=='sub_category'){
+                                } elseif (array_keys($lastKey)[0] == 'sub_category') {
                                     $category = \App\Models\SubCategory::find($lastKey['sub_category']);
                                     $products[] = \App\Models\Product::where('sub_category_id', $category->id)->take(12)->get();
-                                } elseif (array_keys($lastKey)[0]=='child_category') {
+                                } elseif (array_keys($lastKey)[0] == 'child_category') {
                                     $category = \App\Models\ChildCategory::find($lastKey['child_category']);
                                     $products[] = \App\Models\Product::where('child_category_id', $category->id)->take(12)->get();
                                 }
 
                             @endphp
-                            <button class=" {{ $loop->index== 0 ? 'auto_click active' :'' }} " data-filter=".category-{{$loop->index}} ">{{$category->name}}</button>
+                            <button class=" {{ $loop->index == 0 ? 'auto_click active' : '' }} "
+                                data-filter=".category-{{$loop->index}} ">{{$category->name}}</button>
                         @endforeach
                     </div>
                 </div>
@@ -78,7 +79,8 @@
                                             <i class="fas fa-star-half-alt"></i>
                                         </p>
                                         @if (checkDiscount($item->id))
-                                            <p class="wsus__tk">{{$settings->currency_icon}} {{$item->offer_price}} <del>{{$item->price}}</del></p>
+                                            <p class="wsus__tk">{{$settings->currency_icon}} {{$item->offer_price}}
+                                                <del>{{$item->price}}</del></p>
                                         @else
                                             <p class="wsus__tk">{{$settings->currency_icon}} {{$item->price}} </p>
                                         @endif
@@ -95,4 +97,3 @@
         </div>
     </div>
 </section>
-
