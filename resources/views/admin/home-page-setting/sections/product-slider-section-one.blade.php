@@ -15,7 +15,9 @@
                             <label>Category</label>
                             <select class="form-control main-category" data-height="100%" name="cat_one">
                                 <option value="">--Select--</option>
-
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
